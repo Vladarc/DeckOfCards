@@ -5,6 +5,7 @@ html,body{
 font-size: 10px;
 max-width: 100%;
 min-height: 100%;
+padding: 50px;
 }
 body{
 background-image: radial-gradient(
