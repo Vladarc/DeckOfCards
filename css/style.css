@@ -1,0 +1,175 @@
+*{
+box-sizing: border-box;
+}
+html,body{
+font-size: 10px;
+max-width: 100%;
+min-height: 100%;
+}
+body{
+background-image: radial-gradient(
+    circle, #ffd300, #ef8d22, #c65035, #892137, #460329
+    );
+}
+.card-back img{
+width: 100%;
+height: 100%;
+border-radius: 10px;
+}
+.card__inner__img--size img{
+    max-width: 100%;
+   height: 100%;
+
+}
+.container{
+  margin: 20px 0;
+}
+.card{
+position: relative;
+width: 172px;
+height: 240px;
+background: transparent;
+margin: 5px;
+display: inline-block;
+
+}
+
+.flip-card{
+position: absolute;
+width: 100%;;
+height: 100%;
+transform-style: preserve-3d;
+transition: transform 0.7s ease-out;
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18);
+border-radius: 10px;
+
+}
+
+.flip-card:hover{
+transform: rotateY(-180deg);
+
+}
+
+
+.card-front{
+position: absolute;
+width: 100%;
+height: 100%;
+backface-visibility: hidden;
+background-color: #fff;
+font-size: 1.6rem;
+border-radius: 10px;
+transform: rotateY(180deg);
+}
+.card-front::before,
+.card-front::after{
+content: attr(value);
+position: absolute;
+width: 12px;
+text-align: center;
+letter-spacing: -2px;
+}
+
+.card-front::before{
+top:4px;
+left: 4px;
+}
+.card-front::after{
+bottom:4px;
+right:4px;
+transform: rotate(180deg)
+}
+.card-front--heart{
+color: #e44145;
+}
+.card-front--diamond{
+color: #e44145;
+}
+.card-front--heart::before,
+.card-front--heart::after{
+content: attr(value) ' ♥';
+}
+.card-front--spade::before,
+.card-front--spade::after{
+    content: attr(value) ' ♠';
+}
+.card-front--diamond::before,
+.card-front--diamond::after{
+    content: attr(value) ' ♦';
+}
+.card-front--clubs::before,
+.card-front--clubs::after{
+    content: attr(value) ' ♣';
+}
+
+.card__inner{
+position: absolute;
+display: flex;
+justify-content: space-between;
+top:24px;
+left:24px;
+right:24px;
+bottom: 24px;
+}
+.card__inner--centered{
+justify-content: center;
+}
+.card__column{
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+}
+.card__column--centered{
+justify-content: center;
+}
+.card__symbol{
+display: inline-block;
+height: 40px;
+text-align: center;
+}
+.card__symbol:before{
+font-size: 40px;
+line-height: 40px;
+}
+.card-front--heart .card__symbol::before{
+content: "♥";
+}
+.card-front--spade .card__symbol::before{
+content: "♠";
+}
+.card-front--diamond .card__symbol::before{
+content: "♦";
+}
+.card-front--clubs .card__symbol::before{
+content: "♣";
+}
+
+.card__symbol-heart--ace-card::before{
+    content: "♥";
+    font-size: 90px;
+}
+
+
+
+.card__symbol--reverse,
+.card__symbol:last-of-type{
+transform: rotate(180deg);
+}
+.card__symbol:first-of-type{
+transform: rotate(0);
+}
+.card__symbol--huge{
+flex-basis: calc(0.45 * 240px)
+}
+.card__symbol--big{
+flex-basis: calc(0.25 * 240px)
+}
+
+.card-back{
+position: absolute;
+width: 100%;
+height: 100%;
+backface-visibility: hidden;
+
+}
+
