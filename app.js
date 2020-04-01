@@ -1,72 +1,46 @@
-let containers = document.querySelectorAll('.container')
-const options ={
-    root:null,
-    rootMargin:"30px ",
-    threshold:1.0
+const SELECTOR = '.container'
+const ANIMATE_CLASS_NAME_RIGHT = ['visible', 'animated', 'bounceInRight']
+const ANIMATE_CLASS_NAME_LEFT = ['visible', 'animated', 'bounceInLeft']
+
+const options = {
+  root: null,
+  rootMargin: "30px ",
+  threshold: 0.3
 }
 
-
-
-
-
-const handler = (myelment,observer)=>{
-    myelment.forEach(isElemt =>{
-        console.log(isElemt.intersectionRatio)
-        if(isElemt.intersectionRatio>=1){
-           addClassList(isElemt.target)
-        }
-         else if(isElemt.intersectionRatio< 1 || isElemt.target.tagName==="heart"){
-           removeClassList(isElemt.target)
-        }
-    })
+const handler = (myelment, observer) => {
+  myelment.forEach(isElemt => {
+    if (isElemt.intersectionRatio > 0) {
+      addClassList(isElemt.target)
+    }
+  })
 }
 
-const addClassList =(el)=>{
-  el.classList.add('bounce')
+// open arr with classes elements 
+const addingClass= (element,className) => {
+  className.forEach(el =>{
+    element.classList.add(el)
+  })
 }
-const removeClassList = (el)=>{
-el.classList.remove('bounce')
+// add class to target 
+const addClassList = (el) => {
+  const classNamesToRight =['spade','clubs'].some(clasName =>el.classList.contains(clasName))
+  const classNamesToLeft=['heart','diamond'].some(clasName =>el.classList.contains(clasName))
+  
+  if (classNamesToRight) {
+    addingClass(el,ANIMATE_CLASS_NAME_RIGHT)
+  }
+  else if(classNamesToLeft){
+    addingClass(el,ANIMATE_CLASS_NAME_LEFT)
+  }
 }
 
-
-
-let observer = new IntersectionObserver(handler,options)
-containers.forEach(el =>{
-    observer.observe(el)
+let observer = new IntersectionObserver(handler, options)
+document.querySelectorAll(SELECTOR).forEach(el => {
+  observer.observe(el)
 })
 
 
 
 
-/* const element = document.querySelector('.clubs')
-let elementHeight = element.clientHeight;
 
-let height= element.offsetHeight
-
-
-
-const isView=()=>{
-    let windowHeight=window.innerHeight
-    let scrollY=window.scrollY || window.pageYOffse
-    let scrollPosition = scrollY + windowHeight;
-    let elPosition =element.getBoundingClientRect().top + scrollY + elementHeight
-
-     if (scrollPosition > elPosition) {
-        return true;
-      }
-      
-      return false;
-    }
- 
-
-
-
-
-const animate =()=>{
-   if(isView()){
-    element.classList.add('bounceInRight')
-   }else{
-    element.classList.remove('bounceInRight')
-   } 
-}
-document.addEventListener('scroll', animate) */

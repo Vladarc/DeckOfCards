@@ -6,11 +6,18 @@ font-size: 10px;
 max-width: 100%;
 min-height: 100%;
 padding: 50px;
+
 }
+:root {
+--red: 21;
+--green: 92;
+--blue: 29;
+--threshold: .8;   
+}  
 body{
-background-image: radial-gradient(
-circle, #ffd300, #ef8d22, #c65035, #892137, #460329
-);
+background-color: rgba(var(--red), var(--green), var(--blue),var(--threshold));
+overflow-x: hidden;
+
 }
 .card-back img{
 width: 100%;
@@ -45,7 +52,7 @@ width: 100%;;
 height: 100%;
 perspective: 1000px;
 transform-style: preserve-3d;
-transition: transform 0.7s ease-out;
+transition: transform 0.8s ease-out;
 box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18);
 border-radius: 10px;
 
@@ -179,3 +186,12 @@ flex-basis: calc(0.45 * 240px)
 flex-basis: calc(0.25 * 240px)
 }
 
+.hidde{
+    opacity: 0;
+    transition: opacity .3s;
+   
+}
+ .hidde.visible{
+    opacity:1;
+
+}
